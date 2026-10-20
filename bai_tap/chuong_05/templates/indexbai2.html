@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2: Tính điểm học phần</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8edd9 0%, #fed6e3 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: #ffffff;
+            padding: 35px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 {
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+            background-color: #f8fafc;
+        }
+        input[type="text"]:focus {
+            border-color: #0d9488;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+        }
+        .error {
+            color: #ef4444;
+            font-size: 13px;
+            margin-top: 5px;
+            display: block;
+            font-weight: 500;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: #0d9488;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+        .btn-submit:hover { background-color: #0f766e; }
+        .btn-submit:active { transform: scale(0.98); }
+        .result-box {
+            margin-top: 25px;
+            padding: 16px;
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            text-align: center;
+            color: #166534;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>📊 Tính Điểm Học Phần</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="cc">Chuyên cần (10%):</label>
+                <input type="text" id="cc" name="cc" value="{{ values.cc }}" placeholder="Nhập điểm CC (0 - 10)" autocomplete="off">
+                {% if errors.cc %}
+                    <span class="error">{{ errors.cc }}</span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="gk">Giữa kỳ (30%):</label>
+                <input type="text" id="gk" name="gk" value="{{ values.gk }}" placeholder="Nhập điểm GK (0 - 10)" autocomplete="off">
+                {% if errors.gk %}
+                    <span class="error">{{ errors.gk }}</span>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="ck">Cuối kỳ (60%):</label>
+                <input type="text" id="ck" name="ck" value="{{ values.ck }}" placeholder="Nhập điểm CK (0 - 10)" autocomplete="off">
+                {% if errors.ck %}
+                    <span class="error">{{ errors.ck }}</span>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn-submit">Tính điểm học phần</button>
+        </form>
+
+        {% if result %}
+            <div class="result-box">
+                Kết quả: {{ result }}
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
